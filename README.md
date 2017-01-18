@@ -28,7 +28,7 @@ middleware in question to be executed.
 const requestId = require('mali-requestid')
 const unless = require('mali-unless')
 const CallType = require('mali-call-types')
-const toJSON = require('mali-tojson')
+const toJSON = require('mali-tojson')()
 
 const rid = requestId()
 rid.unless = unless

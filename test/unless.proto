@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package unless;
+
+service Tester {
+  rpc TestCall (TestRequest) returns (TestReply) {}
+}
+
+message TestRequest {
+  string message = 1;
+}
+
+message TestReply {
+  bool executed = 1;
+}
