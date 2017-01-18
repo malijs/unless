@@ -17,12 +17,12 @@ const TYPE_VALUES = values(CallType)
  *        If the function returns <code>true</code> for the given request, the middleware will not run.
  *        The function will be passed the call context.
  *        - If <code>RegExp</code> instance, if call name matches the regexp the middleware is skipped.
- * @param {String|Regex|Array} options.name a <code>string</code>, a <code>RegExp</code> or an array of any of those.
+ * @param {String|Regex|Array} options.name A <code>string</code>, a <code>RegExp</code> or an array of any of those.
  *                                          If the call name matches, the middleware will not run.
  *                                          Call names checks are not case sensitive.
- * @param {String|Array} options.type a <code>string</code> or an array of strings.
+ * @param {String|Array} options.type A <code>string</code> or an array of strings.
  *                                     If the call type matches, the middleware will not run.
- * @param {Function} options.custom a test function that returns <code>true</code> / <code>false</code>.
+ * @param {Function} options.custom A test function that returns <code>true</code> / <code>false</code>.
  *        If the function returns <code>true</code> for the given request, the middleware will not run.
  *        The function will be passed the call context.
  * @return {Function} middleware
@@ -31,7 +31,7 @@ const TYPE_VALUES = values(CallType)
  * const requestId = require('mali-requestid')
  * const unless = require('mali-unless')
  * const CallType = require('mali-call-types')
- * const toJSON = require('mali-tojson')
+ * const toJSON = require('mali-tojson')()
  *
  * const rid = requestId()
  * rid.unless = unless
