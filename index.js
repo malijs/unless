@@ -38,7 +38,7 @@ const TYPE_VALUES = values(CallType)
  * app.use(rid.unless({ name: 'SomeMethod' }))
  *
  * toJSON.unless = unless
- * app.use(toJSON.unless({ type: [CallType.DUPLEX, CallType.RESPONSE_STREAM] }))
+ * app.use(toJSON.unless({ type: [ CallType.DUPLEX, CallType.RESPONSE_STREAM ] }))
  *
  */
 function unlessMiddleware (options) {
@@ -74,7 +74,7 @@ function unlessMiddleware (options) {
         if (typeof n === 'string') {
           return n.toLowerCase() === cn
         } else if (n instanceof RegExp) {
-          return n.exec(callName) ? true : false
+          return n.exec(callName) ? true : false // eslint-disable-line no-unneeded-ternary
         }
       })
     }
