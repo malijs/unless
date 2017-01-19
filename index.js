@@ -1,7 +1,4 @@
-const CallType = require('mali-call-types')
-const values = require('lodash.values')
-
-const TYPE_VALUES = values(CallType)
+const conditionTest = require('mali-condition-test')
 
 /**
  * Mali unless middleware. Attach to any middleware and configure it to prevent/permit the
@@ -43,49 +40,9 @@ const TYPE_VALUES = values(CallType)
  */
 function unlessMiddleware (options) {
   const parent = this
-  let opts = options
-  if (typeof options === 'function') {
-    opts = { custom: options }
-  } else if (typeof options === 'string') {
-    if (TYPE_VALUES.indexOf(options) >= 0) {
-      opts = { type: options }
-    } else {
-      opts = { name: options }
-    }
-  } else if (options instanceof RegExp) {
-    opts = { name: options }
-  }
 
   return function unless (ctx, next) {
-    let skip = false
-    const callName = ctx.name
-    const cn = callName.toLowerCase()
-    const callType = ctx.type
-
-    if (opts.custom) {
-      skip = skip || opts.custom(ctx)
-    }
-
-    const names = !opts.name || Array.isArray(opts.name)
-      ? opts.name : [opts.name]
-
-    if (names) {
-      skip = skip || names.some(n => {
-        if (typeof n === 'string') {
-          return n.toLowerCase() === cn
-        } else if (n instanceof RegExp) {
-          return n.exec(callName) ? true : false // eslint-disable-line no-unneeded-ternary
-        }
-      })
-    }
-
-    const types = !opts.type || Array.isArray(opts.type)
-      ? opts.type : [opts.type]
-
-    if (types) {
-      skip = skip || types.some(t => typeof t === 'string' && t === callType)
-    }
-
+    const skip = conditionTest(ctx, options)
     if (skip) {
       return next()
     }
