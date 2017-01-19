@@ -1,6 +1,6 @@
 {
   "name": "mali-unless",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Conditionally add Mali middleware",
   "main": "index.js",
   "repository": {
