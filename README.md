@@ -1,5 +1,7 @@
 # mali-unless
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/malijs/unless.svg)](https://greenkeeper.io/)
+
 Conditionally add [Mali](https://github.com/malijs/mali) middleware
 
 [![npm version](https://img.shields.io/npm/v/mali-unless.svg?style=flat-square)](https://www.npmjs.com/package/mali-unless)
