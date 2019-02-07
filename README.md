@@ -2,23 +2,20 @@
 
 Conditionally add [Mali](https://github.com/malijs/mali) middleware
 
-[![npm version](https://img.shields.io/npm/v/mali-unless.svg?style=flat-square)](https://www.npmjs.com/package/mali-unless)
+[![npm version](https://img.shields.io/npm/v/@malijs/unless.svg?style=flat-square)](https://www.npmjs.com/package/@malijs/unless)
 [![build status](https://img.shields.io/travis/malijs/unless/master.svg?style=flat-square)](https://travis-ci.org/malijs/unless)
-[![Greenkeeper badge](https://badges.greenkeeper.io/malijs/unless.svg)](https://greenkeeper.io/)
 
 ## Installation
 
-
 ```
-npm install mali-unless
+npm install @malijs/unless
 ```
-
 
 ## API
 
-<a name="module_mali-unless"></a>
+<a name="module_@malijs/unless"></a>
 
-### mali-unless ⇒ <code>function</code>
+### @malijs/unless ⇒ <code>function</code>
 Mali unless middleware. Attach to any middleware and configure it to prevent/permit the
 middleware in question to be executed.
 
@@ -32,12 +29,11 @@ middleware in question to be executed.
 | options.custom | <code>function</code> | A test function that returns <code>true</code> / <code>false</code>.        If the function returns <code>true</code> for the given request, the middleware will not run.        The function will be passed the call context. |
 
 **Example**  
-
 ```js
-const requestId = require('mali-requestid')
-const unless = require('mali-unless')
-const CallType = require('mali-call-types')
-const toJSON = require('mali-tojson')()
+const requestId = require('@malijs/requestid')
+const unless = require('@malijs/unless')
+const CallType = require('@malijs/call-types')
+const toJSON = require('@malijs/tojson')()
 
 const rid = requestId()
 rid.unless = unless
@@ -46,7 +42,6 @@ app.use(rid.unless({ name: 'SomeMethod' }))
 toJSON.unless = unless
 app.use(toJSON.unless({ type: [ CallType.DUPLEX, CallType.RESPONSE_STREAM ] }))
 ```
-
 ## License
 
   Apache-2.0

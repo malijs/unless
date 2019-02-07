@@ -1,7 +1,7 @@
 import test from 'ava'
 import path from 'path'
 import caller from 'grpc-caller'
-import CallType from 'mali-call-types'
+import CallType from '@malijs/call-types'
 
 import Mali from 'mali'
 import unless from '../'
@@ -34,7 +34,7 @@ test('should not call when string param as call method name', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless('TestCall'))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -48,7 +48,7 @@ test('should not call when string param as call method name different case', asy
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless('testCall'))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -62,7 +62,7 @@ test('should not call when string param as call method type', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless(CallType.UNARY))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -76,7 +76,7 @@ test('should not call when function param', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless(ctx => ctx.type === CallType.UNARY))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -90,7 +90,7 @@ test('should not call when matching regexp param', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless(/stc/ig))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -104,7 +104,7 @@ test('should call when string param as call method name and does not match a met
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless('TestCallFake'))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -118,7 +118,7 @@ test('should call when string param as call method type no match', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless(CallType.DUPLEX))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -132,7 +132,7 @@ test('should call when function param returns false', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless(ctx => ctx.type === CallType.DUPLEX))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -146,7 +146,7 @@ test('should call when regexp param and no match', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless(/fake/ig))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -160,7 +160,7 @@ test('should not call when specifying name option', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless({ name: 'TestCall' }))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -173,8 +173,8 @@ test('should not call when specifying name option as an array', async t => {
   t.plan(1)
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
-  app.use(mw.unless({ name: [ 'OtherTestCall', 'TestCall' ] }))
-  app.use({testCall})
+  app.use(mw.unless({ name: ['OtherTestCall', 'TestCall'] }))
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -187,8 +187,8 @@ test('should not call when specifying name option as an array with regexp', asyn
   t.plan(1)
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
-  app.use(mw.unless({ name: [ 'OtherTestCall', /stc/ig ] }))
-  app.use({testCall})
+  app.use(mw.unless({ name: ['OtherTestCall', /stc/ig] }))
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -202,7 +202,7 @@ test('should not call when specifying type option', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless({ type: CallType.UNARY }))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -215,8 +215,8 @@ test('should not call when specifying name type as an array', async t => {
   t.plan(1)
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
-  app.use(mw.unless({ type: [ CallType.DUPLEX, CallType.UNARY ] }))
-  app.use({testCall})
+  app.use(mw.unless({ type: [CallType.DUPLEX, CallType.UNARY] }))
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -230,11 +230,11 @@ test('should not call when specifying custom function', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless({
-    type: [ CallType.DUPLEX, CallType.REQUEST_STREAM ],
-    name: [ 'OtherTestCall', /fake/ig ],
+    type: [CallType.DUPLEX, CallType.REQUEST_STREAM],
+    name: ['OtherTestCall', /fake/ig],
     custom: ctx => ctx.type === CallType.UNARY
   }))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')
@@ -248,11 +248,11 @@ test('should call when specifying all options and no match', async t => {
   const host = getHostport()
   const app = new Mali(PROTO_PATH, 'Tester')
   app.use(mw.unless({
-    type: [ CallType.DUPLEX, CallType.REQUEST_STREAM ],
-    name: [ 'OtherTestCall', /fake/ig ],
+    type: [CallType.DUPLEX, CallType.REQUEST_STREAM],
+    name: ['OtherTestCall', /fake/ig],
     custom: ctx => ctx.type === CallType.DUPLEX
   }))
-  app.use({testCall})
+  app.use({ testCall })
   app.start(host)
 
   const client = caller(host, PROTO_PATH, 'Tester')

@@ -1,9 +1,9 @@
-const conditionTest = require('mali-condition-test')
+const conditionTest = require('@malijs/condition-test')
 
 /**
  * Mali unless middleware. Attach to any middleware and configure it to prevent/permit the
  * middleware in question to be executed.
- * @module mali-unless
+ * @module @malijs/unless
  *
  * @param {Object|String|RegExp|Function} options
  *        - If <code>string</code> and one of <code>Mali Call Types</code> do middleware
@@ -25,10 +25,10 @@ const conditionTest = require('mali-condition-test')
  * @return {Function} middleware
  *
  * @example
- * const requestId = require('mali-requestid')
- * const unless = require('mali-unless')
- * const CallType = require('mali-call-types')
- * const toJSON = require('mali-tojson')()
+ * const requestId = require('@malijs/requestid')
+ * const unless = require('@malijs/unless')
+ * const CallType = require('@malijs/call-types')
+ * const toJSON = require('@malijs/tojson')()
  *
  * const rid = requestId()
  * rid.unless = unless
